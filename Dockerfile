@@ -1,5 +1,5 @@
 FROM blacklabelops/java:openjdk.8
-MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
+MAINTAINER Sean Nichols <docker@seanich.com>
 
 ARG CROWD_VERSION=3.3.0
 # permissions
@@ -42,7 +42,8 @@ RUN export MYSQL_DRIVER_VERSION=5.1.44 && \
     mv /tmp/atlassian-crowd-${CROWD_VERSION} /tmp/crowd && \
     ls -A /tmp && \
     mkdir -p /opt && \
-    mv /tmp/crowd /opt/crowd && \
+    rm -r ${CROWD_INSTALL} && \
+    mv /tmp/crowd ${CROWD_INSTALL} && \
     mkdir -p ${CROWD_HOME} && \
     mkdir -p ${CROWD_INSTALL}/crowd-webapp/WEB-INF/classes && \
     mkdir -p ${CROWD_INSTALL}/apache-tomcat/lib && \
